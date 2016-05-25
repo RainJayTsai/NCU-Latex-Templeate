@@ -1,0 +1,54 @@
+\documentclass[twoside,noframe]{ncuthesisXe}
+\usepackage{makeidx}             % for index
+\usepackage{layout}              % to show page dimensions
+\usepackage[]{todonotes}         % Use [disable] to del. all
+\usepackage{cite}
+% 以下為中大碩博士論文封面輸入資料
+\dept      {XXX研究所} 	%系所
+\degree    {碩/博士}			%碩\博士
+\title     {論文名稱}		%論文名稱
+\subtitle  {\sf 英文論文名稱副標題}		%論文名稱 英文
+%\logo{}   %中央無校徽在封面，要除去校徽則用此行，remove\%
+\author    {作者}
+\mprof     {指導教授}
+
+%\sprofi   {{共同指導教授}}  
+%\sprofii   {{}}                        
+\degreedate{中~華~民~國~一百零五~年~六~月}
+\copyyear  {2016-2017}
+\input{mypreamble}               % 自訂巨集多 收起來，
+                                 % 自訂巨集少 直接寫出
+
+%\includeonly{introduction}          % 單獨編譯此檔
+\makeindex                       % 告訴\LaTeX要做索引
+\begin{document}                 % 宣告結束，本文開始
+%----------------------
+\fontsize{14pt}{20pt}\selectfont % 可調間距以便閱讀
+
+\maketitle                       % 論文封面							
+\setboolean{printcopyright}{true}									
+\maketitle                       % 書名面							
+\addtocontents{toc}{~\hfill\textbf{頁次}\par}
+\cleardoublepage 
+\includepdf[pages=-,scale=0.9]{myfile.pdf} % 插入其他表格  		
+
+\frontmatter                     % 羅馬數字編頁
+\include{abstractcn}             % 中文摘要abstractcn環境 			
+\include{abstracten}             % 英文摘要abstracten				
+\include{acknowledge}            % 謝誌     acknowledge			
+\include{lists}                  % 目錄  toc, lof, and lot
+\include{symbol}                 % 符號說明   symbols 環境			
+
+\cleardoublepage \index{\LaTeX! \textbackslash include}
+\mainmatter                      % 阿拉伯數字編頁         
+\include{introduction}			 % 第一章    (自行寫入)
+\include{relateWork}
+\include{approach}
+\include{conclusion}
+~\nocite{*}						%show all you bib refernce paper
+\include{bibli}
+
+
+%{\centering \layout}             % 整頁尺寸(可註解%不用)
+
+\end{document}                   % 52 lines in total

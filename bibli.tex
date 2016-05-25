@@ -1,0 +1,60 @@
+
+\cleardoublepage                         % 保證奇數頁為章節起始
+\phantomsection
+\addcontentsline{toc}{chapter}{索引}     % 將索引加入目錄中
+
+\printindex
+
+\cleardoublepage                         % 保證奇數頁為章節起始
+\phantomsection
+\addcontentsline{toc}{chapter}{參考文獻}     % 將參考文獻加入目錄中
+
+%\bibliographystyle{unsrt}      	
+\bibliographystyle{IEEEbib}
+\bibliography{myfoo}                   %參考文獻bib檔案 % 或標準資料庫用法
+
+
+
+
+
+          
+%\begin{thebibliography}{20}          % 文獻少寫法
+%\bibitem{knu84}
+%Donald E. Knuth. \emph{{The TEXbook, Volume A of Computers and Typesetting}}. \hskip 1em plus 0.5em minus
+% 0.4em\relax Addison-Wesley, Reading, Massachusetts, second edition, 1984, ISBN 0-201-13448-9.\\
+%\url{http://www-cs-staff.stanford.edu/~knuth/index.html}
+%
+%\bibitem{lam94}
+%Leslie Lamport. \emph{{\LaTeX{}: A Document Preparation System}}. \hskip 1em plus 0.5em minus 0.4em\relax Addison-Wesley, Reading, Massachusetts, second edition, 1994, ISBN 0-201-52983-1.
+%
+%\bibitem{lo12a}
+%J.~LO, \emph{{eThinking in Circuits with PSpice}}.\hskip 1em plus
+% 0.5em minus 0.4em\relax Cavesbooks, Inc., 2012, \\ ISBN 978-957-41-8721-8.
+%
+%\bibitem{lo12b}
+%------, \emph{{aThinking in Control with Matlab}}.\hskip 1em plus
+%0.5em minus 0.4em\relax Cavesbooks, Inc., 2012, \\ ISBN pending.
+%
+%\bibitem{lo12c}
+%------, \emph{\LaTeX\ \& U 自助出版}.\hskip 1em plus
+%0.5em minus 0.4em\relax 中央敦煌, 北科文具部, 2012, \\ ISBN 978-957-41-9448-3.
+%
+%\bibitem{lo12d}
+%------, \emph{Packages author of ncuthesis(CJK, Xe), bizcard, cnwritingCJK}.\hskip 1em plus
+%0.5em minus 0.4em\relax Free packages, 2012.\\
+%\url{https://code.google.com/p/ncu-thesis-latex-template/}
+%\bibitem{}
+%\emph{{Writing a thesis in \LaTeX}}
+%\url{http://texblog.org/}
+%
+%\bibitem{126570}
+%Chinese character \textbackslash cjk within \textbackslash section\{\} does not work using pdflatex, + \textbackslash includegraphics, \hskip 1em plus
+%0.5em minus 0.4em\relax\\
+%\url{http://tex.stackexchange.com/a/126570}
+%
+%\bibitem{79776}
+%\emph{Page numbers only appear on pages where a chapter starts}, \hskip 1em plus
+%0.5em minus 0.4em\relax\\
+%\url{http://tex.stackexchange.com/a/79776}
+%\end{thebibliography}                      % 少文獻寫法
+

@@ -1,0 +1,390 @@
+\stepcounter{chapter} % This is trick to keep the bookmark correct
+
+\begin{appendA}
+
+\fvset{frame=none,numbers=left,numbersep=3pt,firstline=1,lastline=300}
+\VerbatimInput{ncuthesisXe.cls}
+\todo[inline]{Xe與CJK是不同的.cls檔案，故這裏(appendi.tex)要改。}
+\index{ncuthesis 環境!appendA}\index{\LaTeX!\textbackslash VerbatimInput}
+\end{appendA}
+
+
+\begin{appendB}
+
+附錄資料於此載入，未設任何格式。
+若性質不同可寫在不同附錄，即{\tt A}或{\tt B}。因只設計成兩
+個附錄。若超過則需至{\tt ncuthesisXe(CJK)}複製後再改為{\tt C，D}，...。每個附錄亦可有節({\tt section})，但沒有設計小節了({\tt subsection})；方程式亦有不同於本文的編號，例如附錄二第一節的第一個方程式的編號如下。
+
+
+\section{第一節}
+有一個方程式(\ref{test})在第\pageref{test}頁
+\begin{equation}
+x+y=z  \label{test}
+\end{equation}
+
+\begin{equation}
+1+1=2 
+\end{equation}
+
+
+\section{第二節}
+猜猜看 第三個方程式的編號？\footnote{Ans: B.3，如何寫出編號？}
+\[
+r+s=t  \nonumber
+\]
+ \index{\LaTeX!\textbackslash pageref}
+\renewcommand\thethm{B.\arabic{thm}}  
+\index{\LaTeX!\textbackslash renewcommand}
+\begin{thm}[附錄中之定理]
+因為$\cdots\cdots$所以$\cdots\cdots$。
+\end{thm}
+
+其實小節、定理、引理、例題等皆依然可用在附錄裏 (但很少啦)，只要加入這些指令於附錄前面，就可產生獨立於正文外之編號系統。
+
+\begin{verbatim}
+\renewcommand\thesubsection{B-\arabic{subsection}}  
+\renewcommand\thethm{B.\arabic{thm}}  
+\renewcommand\thelem{B.\arabic{lem}}  
+\renewcommand\theex{B.\arabic{ex}} 
+\end{verbatim}
+
+如果在附錄A，該如何修改上述指令？
+\vfil
+\newpage
+\section{自動化} \index{自動化}
+此中央大學套件是依據中央大學論文規範而設計的，其他大專院校則有各自的規範，只要重新設計不同部分則各校亦可有自己的\LaTeX 格式檔；現將舉兩三例，讓有興趣的讀者發展屬於自己學校的套件格式且保留原始檔的完整性。
+\index{ncuthesis 環境!onecol}
+
+此法所有(多數)輸入參數可直接帶入，人工輸入只需一次。故稱自動化，例如
+\begin{Verbatim}[frame=single,firstline=1,lastline=30,rulecolor=\color{red},label=Homework title page]
+----- What follows go to the preamble
+\makeatletter
+\newcommand{\homework}{  % 定義開始
+\newpage\partindent=0pt
+{\centering
+\sffamily\bfseries{\@dept}\\
+\sffamily\bfseries{\@title}\\
+\today\\}
+\textit{\@author\hfill 班級 \hfill 學號}
+\rule{\linewidth}{0.5mm}
+}                        % 定義結束
+\makeatother
+\dept{工學院~機械系}
+\title{自動控制 I， 2013 上/下學期}
+\author{羅吉昌}
+------ What follows go after \begin{document}
+\homework  
+此例是作業抬頭，讓想以\LaTeX 寫作業
+的學生可以此套件寫作業；例如 第5章作業可這樣寫。
+\setcounter{chapter}{5}  % 設定章數
+\begin{pr}
+此題的作業題目在此或不抄題 直接做答。
+{\bf Solution:}
+$\cdots$
+\end{pr}
+\end{Verbatim}       
+其輸出如下兩頁所示。
+為何不是下一頁而是下兩頁呢？因為封面，摘要，謝誌，甚至每一章的第一頁都應當在奇數頁出現 --- 面向上的一頁。 酷! 如何達成呢？記得\verb|\cleardoublepage|指令吧。就是它，記住了。
+\cleardoublepage\phantomsection
+\addcontentsline{toc}{subsection}{作業封面 }
+\makeatletter
+\newcommand{\homework}{%
+\newpage                              
+\setlength{\parindent}{0pt}  
+{\centering
+\sffamily\bfseries{\@dept}\\  
+\sffamily\bfseries{\@title}\\
+\today\\}
+\textit{\@author\hfill 班級\hfill 學號}\footnote{因班級、學號無設計儲存變數，是新輸入，故直接寫入。} 
+\rule{\linewidth}{0.5mm} 
+}
+\makeatother
+\dept{工學院~機械系}
+\title{自動控制 I， 2013 上/下學期}
+\author{羅吉昌}
+\homework
+\index{\LaTeX!\textbackslash maketitle}
+\index{ncuthesis 指令!\textbackslash homework}
+\index{\LaTeX!\textbackslash linewidth}\index{\LaTeX!\textbackslash hfill}
+\index{\LaTeX!\textbackslash sffamily} \index{\LaTeX!\textbackslash bfseries}
+\index{\LaTeX!\textbackslash partindent}\index{\LaTeX!\textbackslash setlength}
+
+此例是作業抬頭，例如 第5章作業可這樣寫。
+
+\verb|\setcounter{chapter}{5}  % 設定章數|
+\setcounter{chapter}{5}
+\begin{pr}
+此題的作業題目在此 或不抄題 直接做答。
+
+{\bf Solution:}
+$\cdots$
+\end{pr}
+%\setcounter{chapter}{2}
+\index{\LaTeX!\textbackslash makeatletter}\index{\LaTeX!\textbackslash makeatother}\index{\LaTeX!\textbackslash renewcommand}
+
+\rule{\linewidth}{0.5mm} 
+
+這新的(非單獨)封面是定義\verb|\homework|的內容\footnote{若用{\tt titlepage}環境會產生單獨一頁。}，只有簡單抬頭({\tt title})在頁眉，這樣就不需進入{\tt ncuthesisXe(CJK).cls}
+檔改中央大學的結構，保持原始檔的完整性。
+這簡單的抬頭({\tt title})設計是\LaTeX 非常重要的改寫計巧，因為它是標記{\tt markup}語言。此例題說明讀者可以上述概念重新以\verb|\renewcommand{\maketitle}|修改指令\verb|\maketitle|的內容，設計自己學校的論文封面\footnote{製作時將學校封面資訊拷貝至{\tt \textbackslash maketitle}修改，加入\LaTeX 指令，主要是調整間距啦，一點都不難。書名頁亦同}。\par
+
+
+再舉一自動化例題，這例題是改寫中英文摘要。
+
+\begin{Verbatim}[frame=single,firstline=1,lastline=50,rulecolor=\color{red},label=New abstract]
+----- What follows go to the preamble
+\makeatletter
+\renewenvironment{onecol}[1]  % 定義開始
+{\cleardoublepage\phantomsection
+\addcontentsline{toc}{subsection}{#1} % Or chapter
+\begin{alwayssingle}
+\thispagestyle{plain}
+\begin{center}
+{\Huge \bfseries #1}               % Or \Large and \large
+\end{center}
+\setlength{\parindent}{0pt}
+{\Large 論文名稱：\@title \hfill頁數：101 頁
+\par \vspace*{1ex}}
+{\Large 校所系別：\@dept \par \vspace*{1ex}}
+{\Large 畢業日期：\@degreedate \hfill 學位：碩/博士 
+\par \vspace*{1ex}}
+{\Large 研究生：\@author \hfill指導教授：
+\par \vspace*{2ex}}
+}
+{\null \vfill
+\end{alwayssingle}}           % 定義結束
+\makeatother
+------- What follows go to abstractcn.tex
+\begin{abstractcn}{中文摘要}
+關鍵字： 碩博士論文，體裁檔，\LaTeX，\XeLaTeX
+\vspace{2ex}
+
+\quad
+這是新的中文摘要，與中大不同處是改寫{\tt onecol}環境的內容
+，讓論文資訊在兩側而非置中結構，這樣就不需進入
+{\tt ncuthesisXe(CJK).cls}檔
+改中央大學的結構，保持原始檔的完整性。
+\end{abstractcn}
+\end{Verbatim}      
+\index{\LaTeX!\textbackslash renewenvironment}
+\index{\LaTeX!\textbackslash makeatletter}\index{\LaTeX!\textbackslash makeatother}
+
+
+
+
+\makeatletter
+\renewenvironment{onecol}[1]
+{\cleardoublepage\phantomsection
+\addcontentsline{toc}{subsection}{#1} % Or chapter
+\begin{alwayssingle}
+\thispagestyle{plain}
+\begin{center}
+{\Huge \bfseries #1}
+\end{center}
+\setlength{\parindent}{0pt}
+{\Large 論文名稱：\@title \hfill頁數：101 頁
+\par \vspace*{1ex}}
+{\Large 校所系別：\@dept \par \vspace*{1ex}}
+{\Large 畢業日期：\@degreedate \hfill 學位：\@degree \par \vspace*{1ex}}
+{\Large 研究生：\@author \hfill指導教授：\@mprof \par \vspace*{2ex}}
+}
+{\null \vfill
+\end{alwayssingle}}
+\makeatother
+
+\index{ncuthesis 指令!\textbackslash title}
+\index{ncuthesis 指令!\textbackslash dept}
+\index{ncuthesis 指令!\textbackslash degreedate}
+\index{ncuthesis 指令!\textbackslash author}
+\index{ncuthesis 指令!\textbackslash mprof}
+\begin{abstractcn}
+關鍵字： 碩博士論文，體裁檔，\LaTeX，\XeLaTeX
+\vspace{2ex}
+
+\quad
+
+這是新的中文摘要，與中大不同處是改寫{\tt onecol}環境的內容，讓論文資訊在兩側而非置中結構，這樣就不需進入{\tt ncuthesisXe(CJK).cls}檔改中央大學的結構，保持原始檔的完整性。\index{論文資訊}。英文摘要亦同。
+
+\begin{enumerate}
+\item 頁數需自行填入，{\tt PDF} 閱讀器有顯示總頁數。
+\item 所有論文相關資訊會自動帶入\footnote{{\tt titlepage}環境則無此功能。屬新輸入需自行填入，例如頁數。}。
+\item 因前一例題設計作業抬頭時改寫了，故論文名稱是最新的。
+\item 自動化\verb|\maketitle, \homework|指令\footnote{這兩指令都是做封面設計，名稱是設計者自訂，若相同則是要改寫現存指令，需用{\tt {\color{red}re}newcommand}改寫，若不同則是新指令需用{\tt newcommand}定義。}。及{\tt onecol}環境摘要是否可以用人工化的{\tt titlepage}環境產生？請看人工化一節說明。
+\end{enumerate}
+\end{abstractcn}
+\index{ncuthesis 環境!abstractcn}\index{ncuthesis 環境!abstracten}
+
+\begin{abstracten}        % 新英文摘要
+Keywords： Redesign, Abstract
+\vspace{2ex}
+
+\quad  \index{\LaTeX!\textbackslash quad}
+
+This is a renewed English abstract design (different from NCU). Again, for English abstract, just write your contents into the corresponding file (abstracten.tex.) All those headers will show on the top automatically.
+
+\quad 
+So, you have it. All the basis I can think of up to now, to help you generate a \LaTeX\ thesis file of your own.
+
+\quad Last but not the least, hope you find this package valuable and would recommend it to others. 
+\end{abstracten}
+
+
+\section{手動化} \index{手動化}
+自動化需要變數觀念
+\begin{verbatim}
+\<input>：使用者變數(user variables)。
+\@<input>：內部變數(internal variables)。
+後者只可以在 \makeatletter ... \makeatother 環境內處理。
+\end{verbatim}
+手動化則只需{\tt titlepage}環境。下一例是拷貝上一節自動化的例題，將變數設定改為人工輸入：簡言之，自動化$\Rightarrow$手動化。
+
+用\verb|\begin{titlepage} ... \end{titlepage}|以自行填入方式製作，不設\verb|\author, \dept, \mprof|等輸入變數，完全手動({\tt Free style, manually})，故彈性最大，但重複的資訊需自行多次輸入，故較費工，適合個人化採用。若每個人都用相同介面則採變數設計較佳。
+\begin{Verbatim}[frame=single,firstline=1,lastline=40,rulecolor=\color{red},label=Self-made title page]
+----- What follows go after \begin{document} command
+\begin{titlepage}
+\setcounter{page}{67}
+\begin{center}
+有些學校\\
+這裏有些\\
+其他資訊\\
+\vspace{1.5cm}
+{\Huge\bfseries 學校名稱 \\[2cm]}
+{\Large\bfseries 系所名稱 \\[1cm]}
+{\Large\bfseries 論文題目(中) \\子標題\\ [1cm]} 
+{\Large\bfseries 論文題目(英) \\子標題 \\ [2cm]}
+A Thesis\\
+Submitted to Department of $\ldots$\\
+in Partial Fulfillment of the Requirements\\
+for the Degree of Master/Doctor\\
+in \\
+\vspace*{1cm}
+\begin{minipage}{0.45\textwidth}
+\begin{flushleft}
+研究生： $\ldots$
+\end{flushleft}
+\end{minipage}
+\begin{minipage}{0.45\textwidth}
+\begin{flushright}
+指導教授：$\ldots$ \\
+共同指導：$\ldots$
+\end{flushright}
+\end{minipage}\\
+\vspace*{1.5cm}
+\includegraphics[scale=0.5]{NCUlogo.jpg}
+\par
+中~華~民~國~一百零二~年~七~月
+\end{center}
+\end{titlepage}
+\end{Verbatim}
+
+其結果如下兩頁所示。為何不是下一頁而是下兩頁呢？因為封面，摘要，謝誌，甚至每一章的第一頁都應當在奇數頁出現 --- 面向上的一頁。 酷! 如何達成呢？記得\verb|\cleardoublepage|指令吧。就是它，記住了。
+
+\cleardoublepage\phantomsection
+\addcontentsline{toc}{subsection}{自製封面} 
+\begin{titlepage}
+\thispagestyle{plain}
+\setcounter{page}{67}
+\begin{center}
+有些學校\\
+這裏有些\\
+其他資訊\\
+\vspace{1.5cm}
+{\Huge\bfseries 學校名稱 \\[2cm]}
+{\Large\bfseries 系所名稱 \\[1cm]}
+{\Large\bfseries 論文題目(中) \\子標題\\ [1cm]} 
+{\Large\bfseries 論文題目(英) \\子標題 \\ [2cm]}
+A Thesis\\
+Submitted to Department of $\ldots$\\
+in Partial Fulfillment of the Requirements\\
+for the Degree of Master/Doctor\\
+in \\
+\vspace*{1cm}
+\begin{minipage}{0.45\textwidth}
+\begin{flushleft}
+研究生： $\ldots$
+\end{flushleft}
+\end{minipage}
+\begin{minipage}{0.45\textwidth}
+\begin{flushright}
+指導教授：$\ldots$ \\
+共同指導：$\ldots$
+\end{flushright}
+\end{minipage}\\
+\vspace*{1.5cm}
+\includegraphics[scale=0.5]{NCUlogo.jpg}
+\par
+中~華~民~國~一百零二~年~七~月
+\end{center}
+\end{titlepage}
+
+再舉一中文摘要例題。
+
+\begin{Verbatim}[frame=single,firstline=1,lastline=30,rulecolor=\color{red},label=Another abstract]
+----- What follows go after \begin{document}
+\cleardoublepage\phantomsection
+\addcontentsline{toc}{subsection}{又一摘要} % Or chapter
+\begin{titlepage}
+\thispagestyle{plain}
+\setcounter{page}{69}                    % 自設頁碼
+\begin{center}
+{\Huge \bfseries 又一摘要}
+\end{center}
+\setlength{\parindent}{0pt}
+{\Large 論文名稱：$\ldots$ \hfill頁數：101 頁
+\par \vspace*{1ex}}
+{\Large 校所系別：$\ldots$ \par \vspace*{1ex}}
+{\Large 畢業日期：$\ldots$ \hfill 學位：碩/博士 
+\par \vspace*{1ex}}
+{\Large 研究生：  $\ldots$ \hfill指導教授：$\ldots$ 
+\par \vspace*{2ex}}
+
+\vspace{1cm}
+
+關鍵字：自動化，手動化
+\vspace{2ex}
+
+這是用人工化{\tt titlepage}環境寫的新中文摘要，
+英文摘要亦同。
+
+\end{titlepage}
+\end{Verbatim}
+
+可產生
+
+\cleardoublepage\phantomsection
+\addcontentsline{toc}{subsection}{又一摘要}  % section can be changed to chapter
+\begin{titlepage}
+\thispagestyle{plain}
+\setcounter{page}{69}                                % 自設頁碼
+\begin{center}
+{\Huge \bfseries 又一摘要}
+\end{center}
+\setlength{\parindent}{0pt}
+{\Large 論文名稱$：$ $\ldots$ \hfill 頁數$：$101 頁
+\todo[inline]{別忘了完稿時，頁碼要自己填入正確數字。}
+\par \vspace*{1ex}}
+{\Large 校所系別：$\ldots$ \par \vspace*{1ex}}
+{\Large 畢業日期：$\ldots$ \hfill 學位：碩/博士 \par \vspace*{1ex}}
+{\Large 研究生:  $\ldots$ \hfill 指導教授：$\ldots$ \par \vspace*{2ex}}
+
+\vspace{1cm}
+
+關鍵字：自動化，手動化
+\vspace{2ex}
+
+這是用手動{\tt titlepage}環境寫的新中文摘要，英文摘要亦同。
+
+\begin{itemize}
+\item $\ldots$ 表示要自己手動填入，不是用變數法自動帶入。
+\item 手動化{\tt titlepage}環境永遠設頁碼為1，但摘要常常不是第一頁，故需以\verb|\setcounter{page}{69}|設頁碼。
+\item 如何將此手動化改為自動化？逆向回去\footnote{將 {\tt titlepage}的內容以{\tt \textbackslash newenvironment}定義{\tt abstractcn}環境，然後將人工輸入變數{\tt \textbackslash<input>}以{\tt \textbackslash \char64<input>取代。最後以{\tt \textbackslash makeatletter ... \textbackslash makeatother}包住。}}。還是不懂!!!再研究自動化第二題，有無了解此兩題互為"\,反函數"：自動化$\Leftarrow$手動化，它們之間的差異是什麼？
+\item 以人工化{\tt titlepage}環境修改此套件為個人使用的封面、中英文摘要，謝誌，其實相對而言很簡單。自動化則需了解變數的用法。
+\item 所以學到技巧了嗎？同樣的觀念亦可用來設計其他大專院校封面、中、英文摘要、謝誌等因與中央大學論文格式不同而需重新設計又希望保持原始檔的完整性。
+\end{itemize}
+\end{titlepage}
+
+%\section{投影片}
+\clearpage\phantomsection
+\addcontentsline{toc}{section}{投影片} 
+%\includepdf[pages=-,scale=0.9]{beamertest.pdf} 
+\end{appendB}

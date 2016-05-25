@@ -1,0 +1,24 @@
+\def\scalefactor{1}        % define a new command
+\newcommand\insertfig[3]{
+\renewcommand\scalefactor{#3}
+\begin{figure}[!hbt]
+\centering
+\includegraphics[scale=\scalefactor]{#1}
+\caption{#2}
+\label{Fig:#1}
+\end{figure}
+}
+\newtheorem{thm}{定理}[chapter]
+\newtheorem{pr} {作業}[chapter]
+\newtheorem{pf} {證明}[chapter]
+\newtheorem{algo}{演算法}[chapter]
+
+% what follows are for watermark, mark these out if no need
+%\usepackage{background} 
+%\SetBgContents{\includegraphics{NCUlogo}} % need a watermark
+%\SetBgAngle{0}                                           % rotate
+%\SetBgColor{black!40}                                 % color
+%\SetBgScale{1.5}                                          % scale
+%\SetBgHshift{100}                                        % location x=0 for center
+%\SetBgVshift{230}                                        % location y=0 for center
+% end of watermark codes
