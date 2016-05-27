@@ -48,7 +48,7 @@
 
 \RequirePackage{graphicx,fancyvrb,verbatim,showframe}
 \RequirePackage{pdfpages,pdflscape,ifthen,printlen,calculator}
-\RequirePackage[bookmarks=true,unicode=true,colorlinks=true, %把超連結顏色關閉地方
+\RequirePackage[bookmarks=true,unicode=true,colorlinks=false, %把超連結顏色關閉地方
 %linkcolor = blue,
 %urlcolor  = blue,
 %citecolor = blue,
