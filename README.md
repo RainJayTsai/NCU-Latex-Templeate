@@ -12,7 +12,7 @@
 
 
 ## build成功的範例檔案為
->* NCU_thesis_sample.pdf
+>* [NCU_thesis_sample.pdf](https://github.com/RainJayTsai/NCU-Latex-Templeate/blob/master/NCU_thesis_sample.pdf)
     
 
 ## Todo List 用法
