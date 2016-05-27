@@ -138,7 +138,8 @@ The paper width is      & \printlength{\paperwidth}
 \renewcommand*\l@subsubsection{\@dottedtocline{3}{4.3em}{4em}}
 % DECLARATIONS  宣告
 \let\@sprofi\@empty\let\@sprofii\@empty
-\def\@logo{\includegraphics[width=32mm]{NCUlogo}}  % 預設校徽
+%\def\@logo{\includegraphics[width=32mm]{NCUlogo}}  % 預設校徽
+\let\@logo\@empty
 \def\degreedate#1{\gdef\@degreedate{#1}}           % 畢業時間       
 \def\degree#1{\gdef\@degree{#1}}                   % 學位
 \def\dept#1{\gdef\@dept{#1}}                       % 系所
@@ -189,15 +190,15 @@ The paper width is      & \printlength{\paperwidth}
 \vspace*{5mm}
 {\Huge {\@subtitle} \par}
 \vspace*{10mm}
-{\ifx\@logo\@empty\else\@logo \par}
+{\ifx \@logo\@empty\else\@logo \par\fi}
 \vspace*{10mm}
 \begin{tabular}{l@{ }l@{\quad}r}
 研$\!$究$\!$生: & \@author &       \\[1ex]
-指導教授:         & \@mprof & 博士     \\\\\\[1ex]
-%\ifx \@sprofi\@empty  
-%\else  共同指導 & \@sprofi & 博士\fi \\[1ex] 
-%\ifx \@sprofii\@empty 
-%\else  & \@sprofii & 博士 \fi
+指導教授:         & \@mprof & 博士     \\[1ex]
+\ifx \@sprofi\@empty  
+\else  共同指導: & \@sprofi & 博士\fi \\[1ex] 
+\ifx \@sprofii\@empty 
+\else  & \@sprofii & 博士 \fi
 \end{tabular}\par
 \vspace*{5ex}
 {\Huge {\@degreedate} \par}
