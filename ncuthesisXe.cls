@@ -63,6 +63,14 @@ pdftitle={An example in TeX/LaTeX/XeLaTeX}]{hyperref} % 超聯結
 \setlength{\textwidth}{16cm}
 \setlength{\textheight}{24.7cm}
 
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+\RequirePackage{titlesec}
+\titleformat*{\section}{\fontsize{18pt}{5}\bfseries\selectfont} %change  11 to 5
+\titleformat*{\subsection}{\fontsize{16pt}{5}\bfseries\selectfont}
+\titleformat*{\subsubsection}{\fontsize{16pt}{5}\bfserites\selectfont}
+\titleformat*{\subsubsection}{\large\bfseries}
+
 \uselengthunit{cm}
 \newcommand{\printpagesize}{
 \begin{tabular}{l@{ : }r}
@@ -107,6 +115,7 @@ The paper width is      & \printlength{\paperwidth}
 }
 \renewcommand{\thesection}{\arabic{chapter}-\arabic{section}}
 \renewcommand{\thesubsection}{\thesection-\arabic{subsection}}
+\renewcommand{\thesubsubsection}{\arabic{subsubsection}.}
 
 \def\thickhrule{\leavevmode \leaders \hrule height 0ex  
 \hfill \kern \z@} % add an horizonal line if needed
@@ -135,7 +144,7 @@ The paper width is      & \printlength{\paperwidth}
 \renewcommand*\l@chapter{\@dottedtocline{0}{1em}{6em}}
 \renewcommand*\l@section{\@dottedtocline{1}{2em}{5em}}
 \renewcommand*\l@subsection{\@dottedtocline{2}{3em}{4em}}
-\renewcommand*\l@subsubsection{\@dottedtocline{3}{4.3em}{4em}}
+\renewcommand*\l@subsubsection{\@dottedtocline{3}{4.3em}{6em}}
 % DECLARATIONS  宣告
 \let\@sprofi\@empty\let\@sprofii\@empty
 %\def\@logo{\includegraphics[width=32mm]{NCUlogo}}  % 預設校徽
@@ -236,7 +245,7 @@ The paper width is      & \printlength{\paperwidth}
 \end{alwayssingle}}
 
 \newenvironment{acknowledgements}
-{\begin{onecol}{謝誌}} 
+{\begin{onecol}{致謝}} 
 {\end{onecol}}
 
 \newenvironment{abstracten}
